@@ -14,6 +14,7 @@ enum {
     DRAG_SCROLL = BMP_SAFE_RANGE,
     TRACKBALL_AS_ENCODER1,
     TRACKBALL_AS_ENCODER2,
+    KC_HENK_HOLD,
 };
 
 // Disable BMP dynamic matrix size
@@ -21,6 +22,7 @@ enum {
 #define MATRIX_ROWS MATRIX_ROWS_DEFAULT
 #undef MATRIX_COLS
 #define MATRIX_COLS MATRIX_COLS_DEFAULT
+
 
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT_mini(
@@ -229,6 +231,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             set_encoder &= ~(1 << (keycode - TRACKBALL_AS_ENCODER1));
             set_encoder |= record->event.pressed ? (1 << (keycode - TRACKBALL_AS_ENCODER1)) : 0;
             break;
+        // TapしたときはHENKを、HoldしたときはMHENに切り替える
+        case KC_HENK_HOLD:
+            if(record->event.pressed) {
+                tap_code(KC_INT4);
+            } else {
+                tap_code(KC_INT5);
+            }
+            break;
+
     }
 
     return true;
