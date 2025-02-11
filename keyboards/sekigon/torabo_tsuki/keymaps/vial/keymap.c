@@ -266,6 +266,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code(KC_INT5);
             }
             break;
+        // TapしたときはLANG2を、HoldしたときはLANG1に切り替える
+        case KC_LANG1_HOLD:
+            if(record->event.pressed) {
+                tap_code(KC_LANG1);
+            } else {
+                tap_code(KC_INT2);
+            }
+            break;
 
     }
 

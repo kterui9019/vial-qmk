@@ -994,6 +994,11 @@
       "name": "KC_HENK_HOLD",
       "title": "henkan hold",
       "shortName": "KC_INT4\nENT"
+    },
+    {
+      "name": "KC_LANG1_HOLD",
+      "title": "lang1 hold",
+      "shortName": "KC_LANG1\nENT"
     }
   ],
   "menus": [
